@@ -42,7 +42,7 @@ _scoreAsCards(){
     return (
       <div key ={score.id}>
         <h2>Name {score.name} // Score: {score.score}</h2>
-        <button onClick={() => this._incrementScoreByID(score.id)}> + </button>
+        <button onClick={ () => this._incrementScoreByID(score.id)}> + </button>
       </div>
     )
   });
@@ -50,27 +50,68 @@ _scoreAsCards(){
 }
 
 
+// _incrementScoreByID(id){
+//   console.log('Clicked');
+//   // find the player in this.state.scores
+//   // increment their score
+//   const newScores = this.state.scores.map(Will => {
+//     if(Will.id !== id){
+//       return Will
+//     }else{
+//       return {
+//         id: Will.id,
+//         name: Will.name,
+//         score: Will.score + 1
+//       }
+//     }
+//   })
+//   // call this.setState
+//   this.setState({
+//     scores: newScores
+//   });
+
+// }
+
+// Version 2  map using short to cop
 _incrementScoreByID(id){
   console.log('Clicked');
+  
   // find the player in this.state.scores
   // increment their score
-  const newScores = this.state.scores.map(Will => {
-    if(Will.id !== id){
-      return Will
-    }else{
-      return {
-        id: Will.id,
-        name: Will.name,
-        score: Will.score + 1
-      }
+  const newScores = this.state.scores.map(will =>{
+    if (will.id !== id){
+      return will;
     }
-  })
-  // call this.setState
+    else {
+      return{
+        ...will,
+        name: "Rickky",
+        score: will.score + 1
+      };
+    }
+  });
   this.setState({
     scores: newScores
   });
-
 }
+
+
+// Version 3: .map,object copy, + ternary operator return
+// using a shorthand to copy values out of the original score
+// _incrementScoreByID(id){
+//   // find  the player in this.state.scores
+//   // increment their score
+//   const newScores = this.state.scores.map(harris =>{
+//     return harris.id !== id ? harris: {...harris, score: harris.score +1}
+//   });
+//   this.setState({
+//     scores: newScores
+//   })
+//   // and call their score
+
+
+// }
+
 
 }
 
