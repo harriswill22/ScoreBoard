@@ -42,10 +42,34 @@ _scoreAsCards(){
     return (
       <div key ={score.id}>
         <h2>Name {score.name} // Score: {score.score}</h2>
+        <button onClick={() => this._incrementScoreByID(score.id)}> + </button>
       </div>
     )
   });
   return cards;
+}
+
+
+_incrementScoreByID(id){
+  console.log('Clicked');
+  // find the player in this.state.scores
+  // increment their score
+  const newScores = this.state.scores.map(Will => {
+    if(Will.id !== id){
+      return Will
+    }else{
+      return {
+        id: Will.id,
+        name: Will.name,
+        score: Will.score + 1
+      }
+    }
+  })
+  // call this.setState
+  this.setState({
+    scores: newScores
+  });
+
 }
 
 }
